@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function getComputerChoice() {
+            const compNum = Math.floor(Math.random() * 3);
+
+            if (compNum == 0) {
+                return "Rock";
+            }
+
+            else if (compNum == 1) {
+                return "Paper";
+            }
+
+            else if (compNum == 2) {
+                return "Scissors";
+            }
+        }
+
+        function oneRound(playerSelection, compSelection) {
+            playerSelection = playerSelection.toLowerCase();
+
+            if (playerSelection === "rock") {
+                if (compSelection === "Paper") {
+                    return false;
+                }
+
+                else if (compSelection === "Scissors") {
+                    return true;
+                }
+
+                else {
+                    return "tie";
+                }
+            }
+
+            else if (playerSelection === "paper") {
+                if (compSelection == "Scissors") {
+                    return false;
+                }
+
+                else if (compSelection === "Rock") {
+                    return true;
+                }
+
+                else {
+                    return "tie";
+                }
+            }
+
+            else if (playerSelection === "scissors") {
+                if (compSelection == "Rock") {
+                    return false;
+                }
+
+                else if (compSelection === "Paper") {
+                    return true;
+                }
+
+                else {
+                    return "tie";
+                }
+            }
+        }
+
+        function game() {
+            let playerWins = 0;
+            let compWins = 0;
+
+            while (playerWins <= 5 && compWins <= 5) {
+                if (playerWins == 5) {
+                    return "Player Wins!";
+                }
+
+                else if (compWins == 5) {
+                    return "CPU Wins. Better luck next time!";
+                }
+
+                let pCh = prompt("Choose Rock, Paper, or Scissors.");
+                let round = oneRound(pCh, getComputerChoice());
+
+                if (round == true) {
+                    console.log("Player wins this round!");
+                    playerWins++;
+                }
+
+                else if (round == false) {
+                    console.log("CPU wins this round.");
+                    compWins++;
+                }
+
+                else if (round === "tie") {
+                    console.log("Tie.");
+                }
+
+                else {
+                    console.log(round);
+                }
+            }
+        }
+
+        console.log(game());
+    </script>
+</body>
+
+</html>
