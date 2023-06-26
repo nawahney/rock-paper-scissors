@@ -8,7 +8,41 @@
 </head>
 
 <body>
+    <div class="btn-container">
+        <button class="rock">Rock</button>
+        <button class="paper">Paper</button>
+        <button class="scissors">Scissors</button>
+        <div class="p-wins">0</div>
+        <div class="c-wins">0</div>
+        <div class="final"></div>
+    </div>
+
     <script>
+        const rock = document.querySelector(".rock");
+        const paper = document.querySelector(".paper");
+        const scissors = document.querySelector(".scissors");
+
+        const pwins = document.querySelector(".p-wins");
+        const cwins = document.querySelector(".c-wins");
+        const final = document.querySelector(".final");
+
+        let compWins = 0;
+        let playerWins = 0;
+
+        //need to figure out how to get these rounds to translate to the game
+        rock.onclick = () => {
+            return oneRound("rock", getComputerChoice());
+        }
+
+        paper.onclick = () => {
+            return oneRound("paper", getComputerChoice());
+        }
+
+        scissors.onclick = () => {
+            return oneRound("scissors", getComputerChoice());
+        }
+
+
         function getComputerChoice() {
             const compNum = Math.floor(Math.random() * 3);
 
@@ -30,84 +64,104 @@
 
             if (playerSelection === "rock") {
                 if (compSelection === "Paper") {
-                    return false;
+                    //return false;
+                    //console.log(false);
+                    compWins++;
+                    cwins.textContent = compWins;
+                    //console.log(playerWins + " | " + compWins);
                 }
 
                 else if (compSelection === "Scissors") {
-                    return true;
+                    //return true;
+                    //console.log(true);
+                    playerWins++;
+                    pwins.textContent = playerWins;
+                    //console.log(playerWins + " | " + compWins);
                 }
 
                 else {
-                    return "tie";
+                    //return "tie";
+                    //console.log("tie");
+                    console.log(playerWins + " | " + compWins);
                 }
             }
 
             else if (playerSelection === "paper") {
                 if (compSelection == "Scissors") {
-                    return false;
+                    //return false;
+                    //console.log(false);
+                    compWins++;
+                    cwins.textContent = compWins;
+                    //console.log(playerWins + " | " + compWins);
                 }
 
                 else if (compSelection === "Rock") {
-                    return true;
+                    //return true;
+                    //console.log(true);
+                    playerWins++;
+                    pwins.textContent = playerWins;
+                    //console.log(playerWins + " | " + compWins);
                 }
 
                 else {
-                    return "tie";
+                    //return "tie";
+                    //console.log("tie");
+                    console.log(playerWins + " | " + compWins);
                 }
             }
 
             else if (playerSelection === "scissors") {
                 if (compSelection == "Rock") {
-                    return false;
+                    //return false;
+                    //console.log(false);
+                    compWins++;
+                    cwins.textContent = compWins;
+                    //console.log(playerWins + " | " + compWins);
                 }
 
                 else if (compSelection === "Paper") {
-                    return true;
-                }
-
-                else {
-                    return "tie";
-                }
-            }
-        }
-
-        function game() {
-            let playerWins = 0;
-            let compWins = 0;
-
-            while (playerWins <= 5 && compWins <= 5) {
-                if (playerWins == 5) {
-                    return "Player Wins!";
-                }
-
-                else if (compWins == 5) {
-                    return "CPU Wins. Better luck next time!";
-                }
-
-                let pCh = prompt("Choose Rock, Paper, or Scissors.");
-                let round = oneRound(pCh, getComputerChoice());
-
-                if (round == true) {
-                    console.log("Player wins this round!");
+                    //return true;
+                    //console.log(true);
                     playerWins++;
-                }
-
-                else if (round == false) {
-                    console.log("CPU wins this round.");
-                    compWins++;
-                }
-
-                else if (round === "tie") {
-                    console.log("Tie.");
+                    pwins.textContent = playerWins;
+                    //console.log(playerWins + " | " + compWins);
                 }
 
                 else {
-                    console.log(round);
+                    //return "tie";
+                    //console.log("tie");
+                    console.log(playerWins + " | " + compWins);
                 }
+            }
+
+            //add if statement for 5 wins
+
+            if (playerWins >= 5) {
+                final.textContent = "Player Wins!"
+            }
+
+            else if (compWins >= 5) {
+                final.textContent = "CPU Wins.";
+            }
+
+            if (playerWins >= 5 || compWins >= 5) {
+                rock.onclick = () => {
+                    return;
+                }
+
+                paper.onclick = () => {
+                    return;
+                }
+
+                scissors.onclick = () => {
+                    return;
+                }
+
+                //add reload button if more changes are made
             }
         }
 
-        console.log(game());
+        //console.log(game());
     </script>
 </body>
 
